@@ -4,7 +4,7 @@ import {
   ElMessage, ElContainer, ElAside, ElHeader, ElMain, ElMenu,
   ElSubmenu, ElMenuItemGroup, ElMenuItem, ElBreadcrumb, ElBreadcrumbItem,
   ElCard, ElRow, ElCol, ElTable, ElTableColumn, ElSwitch, ElTooltip,
-  ElPagination, ElDialog, ElMessageBox
+  ElPagination, ElDialog, ElMessageBox, ElTag
 } from 'element-plus'
 
 export default (app) => {
@@ -20,7 +20,7 @@ export default (app) => {
   app.use(ElMenu).use(ElSubmenu).use(ElMenuItemGroup).use(ElMenuItem)
   app.use(ElBreadcrumb).use(ElBreadcrumbItem).use(ElCard).use(ElRow).use(ElCol)
   app.use(ElTable).use(ElTableColumn).use(ElSwitch).use(ElTooltip)
-  app.use(ElPagination).use(ElDialog).use(ElMessageBox)
+  app.use(ElPagination).use(ElDialog).use(ElMessageBox).use(ElTag)
   app.config.globalProperties.$message = ElMessage
   app.config.globalProperties.$messagebox = ElMessageBox
 }

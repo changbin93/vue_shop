@@ -3,6 +3,8 @@ import VueShopLogin from '../components/Login.vue'
 import VueShopHome from '../components/Home.vue'
 import VueShopWelcome from '../components/Welcome.vue'
 import VueShopUsers from '../components/user/Users.vue'
+import VueShopAuth from '../components/auth/Auth.vue'
+import VueShopRoles from '../components/auth/Roles.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -20,6 +22,14 @@ const router = createRouter({
         {
           path: '/users',
           component: VueShopUsers
+        },
+        {
+          path: '/rights',
+          component: VueShopAuth
+        },
+        {
+          path: '/roles',
+          component: VueShopRoles
         }
       ]
     },
