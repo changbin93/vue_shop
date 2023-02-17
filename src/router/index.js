@@ -1,13 +1,27 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import VueShopLogin from '../components/Login.vue'
 import VueShopHome from '../components/Home.vue'
+import VueShopWelcome from '../components/Welcome.vue'
+import VueShopUsers from '../components/user/Users.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
+
     {
       path: '/home',
-      component: VueShopHome
+      redirect: '/welcome',
+      component: VueShopHome,
+      children: [
+        {
+          path: '/welcome',
+          component: VueShopWelcome
+        },
+        {
+          path: '/users',
+          component: VueShopUsers
+        }
+      ]
     },
     {
       path: '/',
