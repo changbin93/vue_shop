@@ -40,7 +40,8 @@
                     <template v-slot="scope">
                         <el-button type="primary" icon="el-icon-edit" size="mini"
                             @click="showEditDialog(scope.row.id)"></el-button>
-                        <el-button type="danger" icon="el-icon-delete" size="mini"></el-button>
+                        <el-button type="danger" icon="el-icon-delete" size="mini"
+                            @click="removeUserById(scope.row.id)"></el-button>
                         <el-tooltip effect="dark" content="Setting roles" placement="top" :enterable="false">
                             <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
                         </el-tooltip>
@@ -103,6 +104,7 @@
                 </span>
             </template>
         </el-dialog>
+
     </div>
 </template>
 
@@ -273,6 +275,32 @@ export default {
 
     editDialogClosed () {
       this.$refs.editFormRef.resetFields()
+    },
+
+    removeUserById (id) {
+      this.$messagebox.confirm('This will permanently delete user, are you sure?', 'Delete User', {
+
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+
+      }).then(async () => {
+        const { data: res } = await axios.delete('users/' + id)
+        // console.log(res);
+        if (res.meta.status !== 200) return this.$message.error('fail to delete')
+
+        this.$message({
+          type: 'success',
+          message: 'Delete completed'
+        })
+        this.getUserList()
+      })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: 'Delete canceled'
+          })
+        })
     }
 
   }
