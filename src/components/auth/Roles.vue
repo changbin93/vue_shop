@@ -61,11 +61,11 @@
     <!-- set auth dialog -->
     <el-dialog v-model="setAuthDialogVisible" title="Set Auth" width="50%" @close="setAuthDialogColsed">
       <el-tree :data="authList" :props="authProps" show-checkbox node-key="id" default-expand-all
-        :default-checked-keys="defKeys" />
+        :default-checked-keys="defKeys" ref="treeRef" />
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="setAuthDialogVisible = false">Cancel</el-button>
-          <el-button type="primary" @click="setAuthDialogVisible = false">
+          <el-button type="primary" @click="allotAuth">
             Confirm
           </el-button>
         </span>
@@ -88,7 +88,8 @@ export default {
         label: 'authName',
         children: 'children'
       },
-      defKeys: []
+      defKeys: [],
+      roleId: ''
     }
   },
 
@@ -131,6 +132,7 @@ export default {
         })
     },
     async showSetAuthDialog (role) {
+      this.roleId = role.id
       const { data: res } = await axios.get('rights/tree')
       if (res.meta.status !== 200) {
         return this.$message.error('fail to get auth list')
@@ -152,6 +154,18 @@ export default {
 
     setAuthDialogColsed () {
       this.defKeys = []
+    },
+    async allotAuth () {
+      const keys = [...this.$refs.treeRef.getCheckedKeys(),
+        ...this.$refs.treeRef.getHalfCheckedKeys()
+      ]
+      // console.log(keys);
+      const idStr = keys.join(',')
+      const { data: res } = await axios.post(`roles/${this.roleId}/rights`, { rids: idStr })
+      if (res.meta.status !== 200) return this.$message.error('fail to set auths')
+      this.$message.success('set auths success')
+      this.getRoleList()
+      this.setAuthDialogVisible = false
     }
   }
 }
