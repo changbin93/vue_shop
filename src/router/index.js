@@ -5,6 +5,7 @@ import VueShopWelcome from '../components/Welcome.vue'
 import VueShopUsers from '../components/user/Users.vue'
 import VueShopAuth from '../components/auth/Auth.vue'
 import VueShopRoles from '../components/auth/Roles.vue'
+import VueShopCategory from '../components/goods/Category.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -30,6 +31,10 @@ const router = createRouter({
         {
           path: '/roles',
           component: VueShopRoles
+        },
+        {
+          path: '/categories',
+          component: VueShopCategory
         }
       ]
     },
