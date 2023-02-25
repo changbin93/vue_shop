@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-breadcrumb separator-class="el-icon-arrow-right">
-            <el-breadcrumb-item :to="{ path: '/' }">Homepage</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/welcome' }">Homepage</el-breadcrumb-item>
             <el-breadcrumb-item>Goods management</el-breadcrumb-item>
             <el-breadcrumb-item>Category Params</el-breadcrumb-item>
         </el-breadcrumb>
