@@ -10,7 +10,7 @@ import VueShopParams from '../components/goods/Params.vue'
 import VueShopList from '../components/goods/List.vue'
 import VueShopAdd from '../components/goods/Add.vue'
 import VueShopOrder from '../components/order/Order.vue'
-
+import VueShopReport from '../components/report/Report.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -56,6 +56,10 @@ const router = createRouter({
         {
           path: '/orders',
           component: VueShopOrder
+        },
+        {
+          path: '/reports',
+          component: VueShopReport
         }
       ]
     },
